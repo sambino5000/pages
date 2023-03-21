@@ -5,11 +5,15 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => {
   return {
-    plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
-    preview: {
-      headers: {
-        'Cache-Control': 'public, max-age=600',
-      },
-    },
+    ssr: { target: 'webworker', noExternal: true },
+    plugins: [
+      qwikCity(),
+      qwikVite({
+        client: {
+          outDir: 'resources/', // This is the right setting
+        },
+      }),
+      tsconfigPaths(),
+    ],
   };
 });
