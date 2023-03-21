@@ -36,5 +36,10 @@
     "vite": "4.2.0",
     "vite-tsconfig-paths": "3.5.0",
     "wrangler": "latest"
+  },
+    "dependencies": {
+    "@bitauth/libauth": "^2.0.0-alpha.8",
+    "idb": "^7.1.1",
+    "ws-electrumx-client": "^1.0.1"
   }
 }
