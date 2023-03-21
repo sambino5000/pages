@@ -3,7 +3,13 @@
       "/*"
     ],
     "exclude": [
- 
+      "/_headers",
+      "/_redirects",
+      "/dist/*",
+      "/favicon.ico",
+      "/manifest.json",
+      "/service-worker.js",
+      "/about"
     ],
     "version": 1
   }
