@@ -1,10 +1,10 @@
 import { useVisibleTask$, component$, useStore, Resource, useResource$ } from '@builder.io/qwik';
-import { DocumentHead, server$ } from '@builder.io/qwik-city';
-import { Link } from '@builder.io/qwik-city';
+import { DocumentHead,/*  server$ */ } from '@builder.io/qwik-city';
+
 import { ElectrumWS, ElectrumWSEvent } from 'ws-electrumx-client';
-import { hexToBin } from '@bitauth/libauth'
+// import { hexToBin } from '@bitauth/libauth'
 // import { LevelUtxoStore } from '../storage/level-storage'
-import { openDB, deleteDB, wrap, unwrap, IDBPDatabase, DBSchema } from 'idb';
+import { openDB, /* deleteDB, wrap, unwrap, IDBPDatabase,  */DBSchema } from 'idb';
 
 
 export async function getTokenUtxos(
