@@ -1,7 +1,7 @@
 import { useVisibleTask$, component$, useStore, Resource, useResource$ } from '@builder.io/qwik';
 import { DocumentHead,/*  server$ */ } from '@builder.io/qwik-city';
 
-import { ElectrumWS, ElectrumWSEvent } from 'ws-electrumx-client';
+import { ElectrumWS, /* ElectrumWSEvent  */} from 'ws-electrumx-client';
 // import { hexToBin } from '@bitauth/libauth'
 // import { LevelUtxoStore } from '../storage/level-storage'
 import { openDB, /* deleteDB, wrap, unwrap, IDBPDatabase,  */DBSchema } from 'idb';
@@ -32,7 +32,7 @@ export default component$(() => {
   })
 
   const blockResource = useResource$<Promise<UnspentUtxo[]>>(async () => {
-    let addr = 'bchtest:qrnnmmhltrt58vaxgemepdy5kqz36x9tqythdhar4a'
+    const addr = 'bchtest:qrnnmmhltrt58vaxgemepdy5kqz36x9tqythdhar4a'
     // let addr = 'bchtest:qptnz3u8atavszhaqk037v0fjrtahxmsl5mm45u3pf'
     const tokenUtxos = await getTokenUtxos(addr)
     console.log(tokenUtxos)
@@ -57,7 +57,7 @@ export default component$(() => {
       }
     const storeKeys = await getKeys()
     // const deleteDB = () => 
-    const data: TokenUtxo = JSON.parse(utxoStore.tokenData)
+    // const data: TokenUtxo = JSON.parse(utxoStore.tokenData)
 
 
     if ((await storeKeys).length == 0) {
@@ -79,10 +79,10 @@ export default component$(() => {
       console.log("DB DELETED", res)
 
     }
-    async function getTokenDBUtxoStore(addr: string) {
+    /* async function getTokenDBUtxoStore(addr: string) {
       return (await getUtxoDB).get("addr-utxo", addr);
-    }
-    const IDBstore = await getTokenDBUtxoStore(utxoStore.addr)
+    } */
+    // const IDBstore = await getTokenDBUtxoStore(utxoStore.addr)
 
   });
   return (
