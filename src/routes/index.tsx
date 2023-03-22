@@ -1,27 +1,27 @@
 import { useVisibleTask$, component$, useStore, Resource, useResource$ } from '@builder.io/qwik';
 import { DocumentHead,/*  server$ */ } from '@builder.io/qwik-city';
 
-import { ElectrumWS, /* ElectrumWSEvent  */} from 'ws-electrumx-client';
+// import { ElectrumWS, /* ElectrumWSEvent  */} from 'ws-electrumx-client';
 // import { hexToBin } from '@bitauth/libauth'
 // import { LevelUtxoStore } from '../storage/level-storage'
 import { openDB, /* deleteDB, wrap, unwrap, IDBPDatabase,  */DBSchema } from 'idb';
 
 
-export async function getTokenUtxos(
-  bchtestAddr: string
-// ): Promise<UnspentUtxo['unspent']> {
-): Promise<UnspentUtxo[]> {
-  // const electrum = new ElectrumWS('ws://0.0.0.0:50003');
-  const electrum = new ElectrumWS('wss://chipnet.imaginary.cash:50004');
-  // const addrtokenUtxo = await electrum.request<Promise<UnspentUtxo>>(
-  const addrtokenUtxo = await electrum.request<Promise<UnspentUtxo[]>>(
-    // 'token.address.listunspent',
-    'blockchain.address.listunspent',
-    bchtestAddr
-  );
-  electrum.close("closed")
-  return addrtokenUtxo//.unspent
-}
+// export async function getTokenUtxos(
+//   bchtestAddr: string
+// // ): Promise<UnspentUtxo['unspent']> {
+// ): Promise<UnspentUtxo[]> {
+//   // const electrum = new ElectrumWS('ws://0.0.0.0:50003');
+//   const electrum = new ElectrumWS('wss://chipnet.imaginary.cash:50004');
+//   // const addrtokenUtxo = await electrum.request<Promise<UnspentUtxo>>(
+//   const addrtokenUtxo = await electrum.request<Promise<UnspentUtxo[]>>(
+//     // 'token.address.listunspent',
+//     'blockchain.address.listunspent',
+//     bchtestAddr
+//   );
+//   electrum.close("closed")
+//   return addrtokenUtxo//.unspent
+// }
 
 
 
@@ -31,54 +31,54 @@ export default component$(() => {
     tokenData: ''
   })
 
-  const blockResource = useResource$<Promise<UnspentUtxo[]>>(async () => {
-    const addr = 'bchtest:qrnnmmhltrt58vaxgemepdy5kqz36x9tqythdhar4a'
-    // let addr = 'bchtest:qptnz3u8atavszhaqk037v0fjrtahxmsl5mm45u3pf'
-    const tokenUtxos = await getTokenUtxos(addr)
-    console.log(tokenUtxos)
-    const tokenDataString = JSON.stringify(tokenUtxos)
-    // utxoStore.height = blockHeaderResponse
-    utxoStore.addr = addr
-    utxoStore.tokenData = tokenDataString
-    return tokenUtxos;
+  // const blockResource = useResource$<Promise<UnspentUtxo[]>>(async () => {
+  //   const addr = 'bchtest:qrnnmmhltrt58vaxgemepdy5kqz36x9tqythdhar4a'
+  //   // let addr = 'bchtest:qptnz3u8atavszhaqk037v0fjrtahxmsl5mm45u3pf'
+  //   const tokenUtxos = await getTokenUtxos(addr)
+  //   console.log(tokenUtxos)
+  //   const tokenDataString = JSON.stringify(tokenUtxos)
+  //   // utxoStore.height = blockHeaderResponse
+  //   utxoStore.addr = addr
+  //   utxoStore.tokenData = tokenDataString
+  //   return tokenUtxos;
 
-  });
+  // });
 
   useVisibleTask$(async () => {
-    const getUtxoDB = openDB('UTXO-STORE', 1, {
-      upgrade(db) {
-        db.createObjectStore('addr-utxo');
-      },
-    });
+    // const getUtxoDB = openDB('UTXO-STORE', 1, {
+    //   upgrade(db) {
+    //     db.createObjectStore('addr-utxo');
+    //   },
+    // });
 
-    const getKeys =
-      async function keys() {
-        return (await getUtxoDB).getAllKeys('addr-utxo');
-      }
-    const storeKeys = await getKeys()
+    // const getKeys =
+    //   async function keys() {
+    //     return (await getUtxoDB).getAllKeys('addr-utxo');
+    //   }
+    // const storeKeys = await getKeys()
     // const deleteDB = () => 
     // const data: TokenUtxo = JSON.parse(utxoStore.tokenData)
 
 
-    if ((await storeKeys).length == 0) {
-      saveTokenUtxoStore(JSON.parse(utxoStore.tokenData), utxoStore.addr)
-    }
+    // if ((await storeKeys).length == 0) {
+    //   saveTokenUtxoStore(JSON.parse(utxoStore.tokenData), utxoStore.addr)
+    // }
 
-    console.log(utxoStore.addr)
-    console.log(storeKeys)
-    if (storeKeys[0] !== utxoStore.addr) {
-      del(storeKeys[0] as string)
-      console.log(storeKeys[0] !== utxoStore.addr)
-      // const addr = await storeKeys[0];
-      saveTokenUtxoStore(JSON.parse(utxoStore.tokenData), utxoStore.addr)
+    // console.log(utxoStore.addr)
+    // console.log(storeKeys)
+    // if (storeKeys[0] !== utxoStore.addr) {
+    //   del(storeKeys[0] as string)
+    //   console.log(storeKeys[0] !== utxoStore.addr)
+    //   // const addr = await storeKeys[0];
+    //   saveTokenUtxoStore(JSON.parse(utxoStore.tokenData), utxoStore.addr)
 
-    }
+    // }
 
-    async function del(addr: string) {
-      const res = (await getUtxoDB).delete('addr-utxo', addr)
-      console.log("DB DELETED", res)
+    // async function del(addr: string) {
+    //   const res = (await getUtxoDB).delete('addr-utxo', addr)
+    //   console.log("DB DELETED", res)
 
-    }
+    // }
     /* async function getTokenDBUtxoStore(addr: string) {
       return (await getUtxoDB).get("addr-utxo", addr);
     } */
@@ -87,8 +87,8 @@ export default component$(() => {
   });
   return (
     <>
-
-      <Resource
+    hello
+ {/*      <Resource
         value={blockResource}
         onPending={() => <div>Loading...</div>}
         // onRejected={(reason) => <div>Error: {reason}</div>}
@@ -106,10 +106,10 @@ export default component$(() => {
                 <p>Value: {e.value}</p>
               </div>
             ))}
-            hello
+        
           </div>
         )}
-      />
+      /> */}
     </>
   )
 });
