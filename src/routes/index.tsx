@@ -1,4 +1,4 @@
-import { useVisibleTask$, component$, useStore, Resource, useResource$ } from '@builder.io/qwik';
+import { useVisibleTask$, component$, useStore,/*  Resource, useResource$  */} from '@builder.io/qwik';
 import { DocumentHead,/*  server$ */ } from '@builder.io/qwik-city';
 
 // import { ElectrumWS, /* ElectrumWSEvent  */} from 'ws-electrumx-client';
@@ -26,10 +26,10 @@ import { openDB, /* deleteDB, wrap, unwrap, IDBPDatabase,  */DBSchema } from 'id
 
 
 export default component$(() => {
-  const utxoStore = useStore/* <TokenUtxo> */({
-    addr: '',
-    tokenData: ''
-  })
+  // const utxoStore = useStore/* <TokenUtxo> */({
+  //   addr: '',
+  //   tokenData: ''
+  // })
 
   // const blockResource = useResource$<Promise<UnspentUtxo[]>>(async () => {
   //   const addr = 'bchtest:qrnnmmhltrt58vaxgemepdy5kqz36x9tqythdhar4a'
