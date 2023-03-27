@@ -7,7 +7,12 @@
   "private": true,
   "scripts": {
     "build": "qwik build",
-    "start": "vite --open --mode ssr"
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.server": "vite build -c adapters/cloudflare-pages/vite.config.ts",
+    "build.types": "tsc --incremental --noEmit",
+    "start": "vite --open --mode ssr",
+    "qwik": "qwik"
   },
   "devDependencies": {
     "@builder.io/qwik": "0.23.0",
